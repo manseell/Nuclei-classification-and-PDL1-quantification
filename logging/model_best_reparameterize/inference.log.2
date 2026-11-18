@@ -1,0 +1,51 @@
+Loaded run: /home/jovyan/path-vol/Flusso1/NuLite/logging
+Loading best model from /home/jovyan/path-vol/Flusso1/NuLite/logging/checkpoints/model_best.pth
+<All keys matched successfully>
+Performing Inference on test set: [2]
+******************** Binary Dataset metrics ********************
+Binary-Cell-Dice-Mean:    0.8532597816649833
+Binary-Cell-Jacard-Mean:  0.6761637594120428
+Tissue-Multiclass-Accuracy: 0.9944893460690669
+bPQ:                      0.6311448227721239
+bDQ:                      0.7740215772574194
+bSQ:                      0.7943434886799222
+mPQ:                      0.5468975454314973
+mDQ:                      0.6700229734793458
+mSQ:                      0.7170348399499703
+f1_detection:             0.8194241006037655
+precision_detection:      0.8230555306360455
+recall_detection:         0.8158245745078162
+******************** Tissue metrics ********************
+Tissue             Dice    Jaccard       mPQ       bPQ
+-------------  --------  ---------  --------  --------
+adrenal_gland  0.873956   0.718691  0.583267  0.678679
+bile-duct      0.878297   0.713385  0.543018  0.664652
+bladder        0.842527   0.698889  0.639119  0.709125
+breast         0.899899   0.703762  0.556568  0.63334
+cervix         0.741503   0.614922  0.571527  0.683988
+colon          0.733046   0.553876  0.467332  0.532191
+esophagus      0.940087   0.766715  0.605153  0.667986
+headneck       0.77509    0.604217  0.543676  0.62922
+kidney         0.84412    0.6807    0.620273  0.686743
+liver          0.863609   0.712231  0.566488  0.666702
+lung           0.906358   0.701471  0.517505  0.624064
+ovarian        0.927433   0.757318  0.598324  0.665331
+pancreatic     0.904799   0.727177  0.582581  0.64591
+prostate       0.904004   0.733637  0.59525   0.669209
+skin           0.864022   0.669705  0.464944  0.607996
+stomach        0.952852   0.779451  0.569013  0.693536
+testis         0.886373   0.742937  0.608651  0.711151
+thyroid        0.730782   0.56312   0.487281  0.566803
+uterus         0.938564   0.750688  0.538908  0.645175
+******************** Nuclei Type Metrics ********************
+Nuclei Type          DQ        SQ        PQ
+-------------  --------  --------  --------
+Neoplastic     0.731063  0.784942  0.607028
+Inflammatory   0.618694  0.644454  0.515898
+Other          0.63391   0.704209  0.504837
+******************** Nuclei Detection Metrics ********************
+Nuclei Type      Precision    Recall        F1
+-------------  -----------  --------  --------
+Neoplastic        0.77181   0.764787  0.768283
+Inflammatory      0.737975  0.6719    0.703389
+Other             0.668704  0.698009  0.683042

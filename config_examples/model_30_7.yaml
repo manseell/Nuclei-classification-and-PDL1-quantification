@@ -1,0 +1,157 @@
+data:
+  dataset: PanNuke
+  dataset_path: /work/Pannuke/dataset
+  num_nuclei_classes: 4                  
+  num_tissue_classes: 19
+  test_folds:
+    - 2
+  train_folds: [0, 1, 2, 3, 4, 5, 6, 9]  
+  val_folds:
+    - 1
+  dataset_config:
+    nuclei_types:                        
+      Background: 0
+      Neoplastic: 1
+      Inflammatory: 2
+      Connective: 3
+      Dead: 4
+      Epithelial: 5
+    tissue_types:
+      Adrenal_gland: 0
+      Bile-duct: 1
+      Bladder: 2
+      Breast: 3
+      Cervix: 4
+      Colon: 5
+      Esophagus: 6
+      HeadNeck: 7
+      Kidney: 8
+      Liver: 9
+      Lung: 10
+      Ovarian: 11
+      Pancreatic: 12
+      Prostate: 13
+      Skin: 14
+      Stomach: 15
+      Testis: 16
+      Thyroid: 17
+      Uterus: 18
+
+eval_checkpoint: model_best.pth
+gpu: 0
+
+logging:
+  group: NuLite-fastvit_t8
+  level: Debug
+  log_comment: NuLite-fastvit_t8-Fold-0
+  log_dir: /work/test/NuLite/fastvit_t8/experiment0/fold0
+  mode: online
+  notes: NuLite
+  project: Cell-Segmentation-Loss-Weights
+  tags:
+    - Fold-0
+    - fastvit_t8
+  wandb_dir: /work/test/NuLite/fastvit_t8/experiment0/fold0
+
+loss:
+  hv_map:
+    mse:
+      loss_fn: mse_loss_maps
+      weight: 1
+    msge:
+      loss_fn: msge_loss_maps
+      weight: 2.5                        
+  nuclei_binary_map:
+    dice:
+      loss_fn: dice_loss
+      weight: 1
+    focaltverskyloss:
+      loss_fn: FocalTverskyLoss
+      weight: 1
+  nuclei_type_map:
+    bce:
+      loss_fn: xentropy_loss
+      weight: 1                          
+    dice:
+      loss_fn: dice_loss
+      weight: 1
+    mcfocaltverskyloss:
+      args:
+        num_classes: 4                   
+        alpha_t: 0.35                    
+        beta_t: 0.65                     
+        gamma_f: 2.0                     
+        class_weights: [0.2, 3.8, 2.0, 3.5] 
+      loss_fn: MCFocalTverskyLoss
+      weight: 4                          
+  tissue_types:
+    ce:
+      loss_fn: CrossEntropyLoss
+      weight: 1
+
+model:
+  backbone: fastvit_t8
+
+random_seed: 0
+run_sweep: false
+
+training:
+  batch_size: 32                         
+  drop_rate: 0
+  early_stopping_patience: 130
+  epochs: 130
+  mixed_precision: true
+  optimizer: AdamW
+  optimizer_hyperparameter:
+    betas: [0.9, 0.999]                  
+    lr: 0.0003                           
+    weight_decay: 0.001                  
+  sampling_gamma: 0.6                    
+  sampling_strategy: cell+tissue
+  scheduler:
+    hyperparameters:
+      gamma: 0.85                        
+      T_max: 200                         
+      eta_min: 1e-06                     
+    scheduler_type: cosine               
+  unfreeze_epoch: 0
+
+transformations:
+  blur:
+    blur_limit: 11
+    p: 0.2
+  colorjitter:
+    p: 0.4                               
+    scale_color: 0.15                    
+    scale_setting: 0.25
+  downscale:
+    p: 0.15
+    scale: 0.5                           
+  elastictransform:
+    p: 0.35                              
+  gaussnoise:
+    p: 0.25
+    var_limit: 50                        
+  horizontalflip:
+    p: 0.5
+  normalize:                             
+    mean:
+      - 0.485
+      - 0.456
+      - 0.406
+    std:
+      - 0.229
+      - 0.224
+      - 0.225
+  randomrotate90:
+    p: 0.5
+  randomsizedcrop:
+    p: 0.4                               
+    scale: [0.6, 1.0]                    
+    ratio: [0.75, 1.33]                  
+  superpixels:
+    p: 0.1
+  verticalflip:
+    p: 0.5
+  zoomblur:
+    p: 0.1

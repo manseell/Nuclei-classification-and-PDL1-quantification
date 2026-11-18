@@ -1,0 +1,51 @@
+Loaded run: /home/jovyan/path-vol/Flusso1/NuLite/logging
+Loading best model from /home/jovyan/path-vol/Flusso1/NuLite/logging/checkpoints/model_best.pth
+<All keys matched successfully>
+Performing Inference on test set: [3]
+******************** Binary Dataset metrics ********************
+Binary-Cell-Dice-Mean:    0.8357585592850767
+Binary-Cell-Jacard-Mean:  0.6485982224974712
+Tissue-Multiclass-Accuracy: 1.0
+bPQ:                      0.45908336621910456
+bDQ:                      0.6055389568781364
+bSQ:                      0.7164000365306253
+mPQ:                      0.42704147714443
+mDQ:                      0.5557392136737542
+mSQ:                      0.6728138217709793
+f1_detection:             0.7585882057401243
+precision_detection:      0.8281796366129586
+recall_detection:         0.6997856439371994
+******************** Tissue metrics ********************
+Tissue               Dice     Jaccard         mPQ         bPQ
+-------------  ----------  ----------  ----------  ----------
+adrenal_gland  nan         nan         nan         nan
+bile-duct      nan         nan         nan         nan
+bladder        nan         nan         nan         nan
+breast         nan         nan         nan         nan
+cervix         nan         nan         nan         nan
+colon            0.835759    0.648598    0.427041    0.459083
+esophagus      nan         nan         nan         nan
+headneck       nan         nan         nan         nan
+kidney         nan         nan         nan         nan
+liver          nan         nan         nan         nan
+lung           nan         nan         nan         nan
+ovarian        nan         nan         nan         nan
+pancreatic     nan         nan         nan         nan
+prostate       nan         nan         nan         nan
+skin           nan         nan         nan         nan
+stomach        nan         nan         nan         nan
+testis         nan         nan         nan         nan
+thyroid        nan         nan         nan         nan
+uterus         nan         nan         nan         nan
+******************** Nuclei Type Metrics ********************
+Nuclei Type          DQ        SQ        PQ
+-------------  --------  --------  --------
+Neoplastic     0.518248  0.697166  0.380788
+Inflammatory   0.697846  0.725869  0.571229
+Other          0.487044  0.647215  0.360172
+******************** Nuclei Detection Metrics ********************
+Nuclei Type      Precision    Recall        F1
+-------------  -----------  --------  --------
+Neoplastic        0.691143  0.664112  0.677358
+Inflammatory      0.746357  0.746357  0.746357
+Other             0.758899  0.538219  0.629787
